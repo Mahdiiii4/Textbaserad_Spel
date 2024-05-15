@@ -1,19 +1,15 @@
 namespace Textbaserad_Spel
 {
-    public class StarkFiende
+    public class StarkFiende : Fiende
     {
         private int hp = 100; //Bestäma hp för fiende.
-
-        public int HP //property för att kunna ändra och läsa hp.
-        {
-            get{return hp;}
-            set{hp = value;}
-        }
-
-        public int Attackera(int target) //metod för attackera. Den måste ta in target som den ska gör skada till.
+        private int stamina = 120;
+        int turn = 2;
+        public override int Attack(int target) //metod för attackera. Den måste ta in target som den ska gör skada till.
         {
             target = target - 5; //minskar hp med 5.
             Console.WriteLine($"Du fick 5 skada av en stark fiende"); //Text så att spelar vet vad händer.
+            Console.WriteLine("");
             return target; //Return spelare hp.
         }
     }
