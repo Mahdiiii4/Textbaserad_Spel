@@ -2,14 +2,28 @@ namespace Textbaserad_Spel
 {
     public class StarkFiende : Fiende
     {
-        private int hp = 100; //Bestäma hp för fiende.
-        private int stamina = 120;
+        private int hp = 100;
+        private int rage = 120;
+        private int damage = 10;
+        private int exhaustion = 30;
         int turn = 2;
-        public override int Attack(int target) //metod för attackera. Den måste ta in target som den ska gör skada till.
+        public override int Attack(int target)
         {
-            target = target - 5; //minskar hp med 5.
-            Console.WriteLine("");
-            return target; //Return spelare hp.
+            if(rage < 30)
+            {
+                rage = rage + 30;
+                Console.WriteLine("Fiende vilar lite");
+                Console.WriteLine("Rage +" + rage + ".");
+            }
+            else
+            {
+                target = target - damage;
+                rage = rage - exhaustion;
+                Console.WriteLine("Du fick " + damage + " skada.");
+                Console.WriteLine("fiende rage -" + exhaustion + ".");
+                Console.WriteLine("");
+            }
+            return target;
         }
     }
 }

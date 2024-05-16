@@ -2,15 +2,18 @@ namespace Textbaserad_Spel
 {
     public class Spelare : Fiende
     {
-        private int hp = 100; //bestäma spelare hp.
+        private int hp = 100;
         private int stamina = 100;
+        private int damage = 10;
+        private int exhaustion = 20;
+        private int regain = 30;
         int turn = 2;
-        public int Stamina //property för att kunna ändra och läsa stamina.
+        public int Stamina 
         {
             get{return stamina;}
             set{stamina = value;}
         }
-        public override int Attack(int target) //metod för attackera. Den måste ta in target som den ska gör skada till.
+        public override int Attack(int target)
         {
             if(stamina <20)
             {
@@ -19,17 +22,18 @@ namespace Textbaserad_Spel
             }
             else
             {
-                target = target - 10; //minskar hp med 10.
-                stamina = stamina - 20;
+                
+                target = target - damage;
+                stamina = stamina - exhaustion;
                 turn = turn - 1;
-                Console.WriteLine("Du attackerade fiende. Fiende hp: "+ target +".");
-                Console.WriteLine("Stamina -20");
+                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target +".");
+                Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
-                return target; //Return spelare hp.
+                return target;
             }
         }
 
-        public int StarkAttack(int target) //metod för attackera. Den måste ta in target som den ska gör skada till.
+        public int StarkAttack(int target)
         {
             if(stamina < 40)
             {
@@ -38,29 +42,29 @@ namespace Textbaserad_Spel
             }
             else
             {
-                target = target - 30; //minskar hp med 10.
+                target = target - 30;
                 stamina = stamina - 40;
                 turn = turn - 2;
-                Console.WriteLine("Du attackerade fiende. Fiende hp: "+ target +".");
-                Console.WriteLine("Stamina -40");
+                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target +".");
+                Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
-                return target; //Return spelare hp.
+                return target; 
             }
         }
 
         public void Vila()
         {
-            Console.WriteLine("Du vilar lite");
-            Console.WriteLine("Stamina +30");
-            Console.WriteLine("");
             turn = turn - 1;
             stamina = stamina +30;
+            Console.WriteLine("Du vilar lite.");
+            Console.WriteLine("Stamina +" + regain + ".");
+            Console.WriteLine("");
         }
 
-        public void SkrivaUt() //Metod för att skriva ut din hp.
+        public void SkrivaUt()
         {
-            Console.WriteLine($"Din hp: {hp}"); //Text för spelare.
-            Console.WriteLine($"Din stamina: {stamina}"); //Text för spelare.
+            Console.WriteLine("Din hp: " + hp + "."); 
+            Console.WriteLine("Din stamina: " + stamina + ".");
             Console.WriteLine("");
         }
     }

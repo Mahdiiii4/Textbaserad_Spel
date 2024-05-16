@@ -4,15 +4,16 @@ namespace Textbaserad_Spel
     {
         public int MenyVal()
         {
-            Console.WriteLine("Skriv nummer för val"); //Du har val mellan två olika saker. Attackera och skriva ut liv.
+            Console.WriteLine("Skriv nummer för val");
             Console.WriteLine("1. Vanlig attack.");
             Console.WriteLine("2. Stark attack.");
             Console.WriteLine("3. Vila.");
             Console.WriteLine("4. Stats.");
             Console.WriteLine("5. Scoreboard.");
             Console.WriteLine("6. Instruktioner.");
+            Console.WriteLine("7. Quit");
             
-            int svar = int.Parse(Console.ReadLine()); //Tar in svart och spara den.
+            int svar = int.Parse(Console.ReadLine());
             Console.WriteLine("");
             return svar;
         }

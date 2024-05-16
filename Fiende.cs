@@ -2,19 +2,48 @@ namespace Textbaserad_Spel
 {
     public class Fiende
     {
-        private int hp = 50; //Bestäma hp för fiende.
-        private int stamina = 60;
-        public int HP //property för att kunna ändra och läsa hp.
+        private int hp = 50;
+        private int rage = 60;
+        private int damage = 25;
+        private int exhaustion = 10;
+        public int HP
         {
             get{return hp;}
             set{hp = value;}
         }
-        public virtual int Attack(int target) //metod för attackera. Den måste ta in target som den ska gör skada till.
+        public int Rage
         {
-            target = target - 15; //minskar hp med 15.
-            stamina = stamina - 20;
-            Console.WriteLine("");
-            return target; //Return spelare hp.
+            get{return rage;}
+            set{rage = value;}
+        }
+        public int Damage
+        {
+            get{return damage;}
+            set{damage = value;}
+        }
+        public int Exhaustion
+        {
+            get{return exhaustion;}
+            set{exhaustion = value;}
+        }
+        public virtual int Attack(int target)
+        {
+            if(rage < 10)
+            {
+                rage = rage + 10;
+                Console.WriteLine("Fiende vilar lite");
+                Console.WriteLine("Rage +" + rage + ".");
+            }
+            else
+            { 
+                
+                target = target - damage;
+                rage = rage - exhaustion;
+                Console.WriteLine("Du fick " + damage + " skada.");
+                Console.WriteLine("fiende rage -" + exhaustion + ".");
+                Console.WriteLine(""); 
+            }
+            return target;
         }
     }
 }
