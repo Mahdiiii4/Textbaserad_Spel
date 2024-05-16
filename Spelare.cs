@@ -23,6 +23,7 @@ namespace Textbaserad_Spel
                 stamina = stamina - 20;
                 turn = turn - 1;
                 Console.WriteLine("Du attackerade fiende. Fiende hp: "+ target +".");
+                Console.WriteLine("Stamina -20");
                 Console.WriteLine("");
                 return target; //Return spelare hp.
             }
@@ -41,6 +42,7 @@ namespace Textbaserad_Spel
                 stamina = stamina - 40;
                 turn = turn - 2;
                 Console.WriteLine("Du attackerade fiende. Fiende hp: "+ target +".");
+                Console.WriteLine("Stamina -40");
                 Console.WriteLine("");
                 return target; //Return spelare hp.
             }

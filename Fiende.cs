@@ -13,7 +13,6 @@ namespace Textbaserad_Spel
         {
             target = target - 15; //minskar hp med 15.
             stamina = stamina - 20;
-            Console.WriteLine($"Du fick 10 skada av fiende"); //Text så att spelar vet vad händer.
             Console.WriteLine("");
             return target; //Return spelare hp.
         }
