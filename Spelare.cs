@@ -1,6 +1,6 @@
 namespace Textbaserad_Spel
 {
-    public class Spelare : Fiende
+    public class Spelare
     {
         private int hp = 100;
         private int stamina = 100;
@@ -9,6 +9,21 @@ namespace Textbaserad_Spel
         private int regain = 30;
         private int turn = 2;
         private int points = 0;
+        public int HP
+        {
+            get{return hp;}
+            set{hp = value;}
+        }
+        public int Damage
+        {
+            get{return damage;}
+            set{damage = value;}
+        }
+        public int Exhaustion
+        {
+            get{return exhaustion;}
+            set{exhaustion = value;}
+        }
         public int Stamina 
         {
             get{return stamina;}

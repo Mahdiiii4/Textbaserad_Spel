@@ -1,13 +1,33 @@
 namespace Textbaserad_Spel
 {
-    public class StarkFiende : Fiende
+    public class StarkFiende
     {
         private int hp = 100;
         private int rage = 120;
         private int damage = 10;
         private int exhaustion = 30;
         int turn = 2;
-        public override void Attack(Spelare spelare)
+        public int HP
+        {
+            get{return hp;}
+            set{hp = value;}
+        }
+        public int Rage
+        {
+            get{return rage;}
+            set{rage = value;}
+        }
+        public int Damage
+        {
+            get{return damage;}
+            set{damage = value;}
+        }
+        public int Exhaustion
+        {
+            get{return exhaustion;}
+            set{exhaustion = value;}
+        }
+        public void Attack(Spelare spelare)
         {
             if(rage < 30)
             {

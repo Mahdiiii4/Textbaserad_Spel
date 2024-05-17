@@ -26,7 +26,7 @@ namespace Textbaserad_Spel
             get{return exhaustion;}
             set{exhaustion = value;}
         }
-        public virtual void Attack(Spelare spelare)
+        public void Attack(Spelare spelare)
         {
             if(rage < 10)
             {
