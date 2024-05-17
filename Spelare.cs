@@ -7,55 +7,68 @@ namespace Textbaserad_Spel
         private int damage = 10;
         private int exhaustion = 20;
         private int regain = 30;
-        int turn = 2;
+        private int turn = 2;
+        private int points = 0;
         public int Stamina 
         {
             get{return stamina;}
             set{stamina = value;}
         }
-        public override int Attack(int target)
+        public int Points
         {
-            if(stamina <20)
+            get{return points;}
+            set{points = value;}
+        }
+        public int Turn
+        {
+            get{return turn;}
+            set{turn = value;}
+        }
+        public void Attack(Fiende target)
+        {
+            if(stamina < 20)
             {
                 Console.WriteLine("Du har inte tillräckligt stamina!");
-                return target;
             }
             else
             {
                 
-                target = target - damage;
-                stamina = stamina - exhaustion;
-                turn = turn - 1;
-                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target +".");
+                target.HP -= damage;
+                stamina -= exhaustion;
+                turn -= 1;
+                points += 10;
+                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
-                return target;
             }
         }
 
-        public int StarkAttack(int target)
+        public void StarkAttack(Fiende target)
         {
             if(stamina < 40)
             {
                 Console.WriteLine("Du har inte tillräckligt stamina!");
-                return target;
+            }
+            else if(turn < 2)
+            {
+                Console.WriteLine("Du har inte tillräckligt turns!");
             }
             else
             {
-                target = target - 30;
-                stamina = stamina - 40;
-                turn = turn - 2;
-                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target +".");
+                target.HP -= 30;
+                stamina -= exhaustion - 20;
+                turn -= 2;
+                points -= 20;
+                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
-                return target; 
             }
         }
 
         public void Vila()
         {
-            turn = turn - 1;
-            stamina = stamina +30;
+            turn -= 1;
+            stamina += 30;
             Console.WriteLine("Du vilar lite.");
             Console.WriteLine("Stamina +" + regain + ".");
             Console.WriteLine("");

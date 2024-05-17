@@ -26,24 +26,24 @@ namespace Textbaserad_Spel
             get{return exhaustion;}
             set{exhaustion = value;}
         }
-        public virtual int Attack(int target)
+        public virtual void Attack(Spelare spelare)
         {
             if(rage < 10)
             {
-                rage = rage + 10;
+                rage += 10;
                 Console.WriteLine("Fiende vilar lite");
                 Console.WriteLine("Rage +" + rage + ".");
             }
             else
             { 
                 
-                target = target - damage;
-                rage = rage - exhaustion;
+                spelare.HP -= damage;
+                rage -= exhaustion;
                 Console.WriteLine("Du fick " + damage + " skada.");
                 Console.WriteLine("fiende rage -" + exhaustion + ".");
+                Console.WriteLine(spelare.HP);
                 Console.WriteLine(""); 
             }
-            return target;
         }
     }
 }

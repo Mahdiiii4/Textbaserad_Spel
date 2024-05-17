@@ -2,20 +2,31 @@ namespace Textbaserad_Spel
 {
     public class Meny
     {
-        public int MenyVal()
+        public int MainMeny()
+        {
+            Console.WriteLine("Skriv nummer för val");
+            Console.WriteLine("1. Spela");
+            Console.WriteLine("2. Scoreboard.");
+            Console.WriteLine("3. Instruktioner.");
+            Console.WriteLine("4. Quit");
+            
+            int menuSvar = int.Parse(Console.ReadLine());
+            Console.WriteLine("");
+            return menuSvar;
+        }
+        
+        public int SpelMeny()
         {
             Console.WriteLine("Skriv nummer för val");
             Console.WriteLine("1. Vanlig attack.");
             Console.WriteLine("2. Stark attack.");
             Console.WriteLine("3. Vila.");
             Console.WriteLine("4. Stats.");
-            Console.WriteLine("5. Scoreboard.");
-            Console.WriteLine("6. Instruktioner.");
-            Console.WriteLine("7. Quit");
+            Console.WriteLine("5. Quit");
             
-            int svar = int.Parse(Console.ReadLine());
+            int spelSvar = int.Parse(Console.ReadLine());
             Console.WriteLine("");
-            return svar;
+            return spelSvar;
         }
 
         public void ScoreBoard()
