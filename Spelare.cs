@@ -121,7 +121,7 @@ namespace Textbaserad_Spel
             }
             else
             {
-                Spara();
+                //Spara();
                 i = 0;
             }
             return i;
@@ -129,7 +129,7 @@ namespace Textbaserad_Spel
         public int Förlora(int i)
         {
             Console.WriteLine("Du förlorade");
-            Spara();
+            //Spara();
             i = 0;
             return i;
         }

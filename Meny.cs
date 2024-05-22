@@ -28,8 +28,33 @@ namespace Textbaserad_Spel
             Console.WriteLine("");
             return spelSvar;
         }
-
-        public void ScoreBoard()
+        
+        public void ScoreBoard(int points)
+        {
+            
+            StreamReader sr = new StreamReader("Textfil.txt", true);
+            int[] sortera = new int[4];
+            List<int> textRader = new List<int>();
+//            List<int> sortera = new List<int>();
+            string rad = "";
+            int id = 0;
+            while ((rad = sr.ReadLine()) != null)
+            {
+                sortera[id] = int.Parse(rad);
+                id++;
+            }
+            sortera[3] = points;
+            sr.Close();
+            Array.Sort(sortera);
+            StreamWriter sw = new StreamWriter("Textfil.txt", true);
+            for (int i = 0; i < 3; i++)
+            {
+                sw.Write(sortera[i]);
+            }
+            sw.Close();
+        }
+        
+        public void ScoreBoardSkriv()
         {
             StreamReader sr = new StreamReader("Textfil.txt", true);
 

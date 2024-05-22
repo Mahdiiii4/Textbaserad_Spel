@@ -9,6 +9,7 @@ fiender.Add(new StarkFiende(150, 90, 10, 30));
 
 bool quit = false;
 bool play = false;
+bool save = false;
 int i = 0;
 
 while(!quit) 
@@ -22,7 +23,7 @@ while(!quit)
         }
         case 2:
         {
-            meny.ScoreBoard();
+            meny.ScoreBoardSkriv();
             break;
         }
         case 3:
@@ -75,16 +76,23 @@ while(!quit)
         {
             i = spelare.Förtsätta(i);
             play = false;
+            save = true;
         }
         else if(spelare.HP <= 0)
         {
             i = spelare.Förlora(i);
             play = false;
+            save = true;
         }
         else if(spelare.Turn < 1)
         {
             fiender[i].Attack(spelare);
             spelare.Turn = 2;
         }
+    }
+    if(save)
+    {
+        save = false;
+        meny.ScoreBoard(spelare.Points);
     }
 }
