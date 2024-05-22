@@ -1,38 +1,19 @@
 namespace Textbaserad_Spel
 {
-    public class StarkFiende
+    public class StarkFiende : Fiende
     {
-        private int hp = 100;
-        private int rage = 120;
-        private int damage = 10;
-        private int exhaustion = 30;
+        bool showUp = true;
+        public StarkFiende(int hp, int rage, int damage, int exhaustion) : base(hp, rage, damage, exhaustion)
+        {
+        }
         int turn = 2;
-        public int HP
-        {
-            get{return hp;}
-            set{hp = value;}
-        }
-        public int Rage
-        {
-            get{return rage;}
-            set{rage = value;}
-        }
-        public int Damage
-        {
-            get{return damage;}
-            set{damage = value;}
-        }
-        public int Exhaustion
-        {
-            get{return exhaustion;}
-            set{exhaustion = value;}
-        }
-        public void Attack(Spelare spelare)
+        public override void Attack(Spelare spelare)
         {
             if(rage < 30)
             {
                 rage += 30;
                 Console.WriteLine("Fiende vilar lite");
+                Thread.Sleep(1000);
                 Console.WriteLine("Rage +" + rage + ".");
             }
             else
@@ -40,8 +21,19 @@ namespace Textbaserad_Spel
                 spelare.HP -= damage;
                 rage = rage - exhaustion;
                 Console.WriteLine("Du fick " + damage + " skada.");
+                Thread.Sleep(1000);
                 Console.WriteLine("fiende rage -" + exhaustion + ".");
                 Console.WriteLine("");
+            }
+        }
+        public override void ShowUpText()
+        {
+            if(showUp)
+            {
+                Console.WriteLine("En stark fiende dyker up!");
+                Thread.Sleep(1000);
+                Console.WriteLine(" ");
+                showUp = false;
             }
         }
     }

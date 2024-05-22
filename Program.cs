@@ -1,18 +1,15 @@
 ﻿using Textbaserad_Spel; 
 
 Spelare spelare  = new Spelare();
-Fiende fiende = new Fiende();
-StarkFiende starkfiende = new StarkFiende(); 
 Meny meny = new Meny();
 
-Random random = new Random();
-random.Next(1, 3);
-List<object> objekts = new List<object>();
-objekts.Add(fiende);
-objekts.Add(starkfiende);
+List<Fiende> fiender = new List<Fiende>();
+fiender.Add(new Fiende(50, 20, 25, 10));
+fiender.Add(new StarkFiende(150, 90, 10, 30));
 
 bool quit = false;
 bool play = false;
+int i = 0;
 
 while(!quit) 
 {
@@ -42,16 +39,18 @@ while(!quit)
     
     while(play)
     {
+        Console.WriteLine("Turns" + spelare.Turn);
+        fiender[i].ShowUpText();
         switch(meny.SpelMeny()) 
         {
             case 1:
             {
-                spelare.Attack(fiende); 
+                spelare.Attack(fiender[i]); 
                 break;
             }
             case 2:
             {
-                spelare.StarkAttack(fiende);
+                spelare.StarkAttack(fiender[i]);
                 break;
             }
             case 3:
@@ -66,24 +65,26 @@ while(!quit)
             }
             case 5:
             {   
+                play = false;
                 quit = true;
                 break;
             }
         }
 
-        if(fiende.HP <= 0)
+        if(fiender[i].HP <= 0)
         {
-            Console.WriteLine("Du vann!");
+            i = spelare.Förtsätta(i);
             play = false;
         }
         else if(spelare.HP <= 0)
         {
-            Console.WriteLine("Du förlorade");
+            i = spelare.Förlora(i);
             play = false;
         }
         else if(spelare.Turn < 1)
         {
-            fiende.Attack(spelare);
+            fiender[i].Attack(spelare);
+            spelare.Turn = 2;
         }
     }
 }

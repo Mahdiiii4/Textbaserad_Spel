@@ -2,10 +2,18 @@ namespace Textbaserad_Spel
 {
     public class Fiende
     {
-        private int hp = 50;
-        private int rage = 60;
-        private int damage = 25;
-        private int exhaustion = 10;
+        protected int hp;
+        protected int rage;
+        protected int damage;
+        protected int exhaustion;
+        bool showUp = true;
+        public Fiende(int hp, int rage, int damage, int exhaustion)
+        {
+            this.hp = hp;
+            this.rage = rage;
+            this.damage = damage;
+            this.exhaustion = exhaustion;
+        }
         public int HP
         {
             get{return hp;}
@@ -26,12 +34,13 @@ namespace Textbaserad_Spel
             get{return exhaustion;}
             set{exhaustion = value;}
         }
-        public void Attack(Spelare spelare)
+        public virtual void Attack(Spelare spelare)
         {
             if(rage < 10)
             {
                 rage += 10;
                 Console.WriteLine("Fiende vilar lite");
+                Thread.Sleep(1000);
                 Console.WriteLine("Rage +" + rage + ".");
             }
             else
@@ -40,9 +49,19 @@ namespace Textbaserad_Spel
                 spelare.HP -= damage;
                 rage -= exhaustion;
                 Console.WriteLine("Du fick " + damage + " skada.");
+                Thread.Sleep(1000);
                 Console.WriteLine("fiende rage -" + exhaustion + ".");
-                Console.WriteLine(spelare.HP);
                 Console.WriteLine(""); 
+            }
+        }
+        public virtual void ShowUpText()
+        {
+            if(showUp)
+            {
+                Console.WriteLine("En fiende dyker up!");
+                Thread.Sleep(1000);
+                Console.WriteLine(" ");
+                showUp = false;
             }
         }
     }

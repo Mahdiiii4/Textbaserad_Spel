@@ -6,9 +6,11 @@ namespace Textbaserad_Spel
         private int stamina = 100;
         private int damage = 10;
         private int exhaustion = 20;
-        private int regain = 30;
+        private int staminaRegain = 30;
+        private int hpRegain = 30;
         private int turn = 2;
         private int points = 0;
+        private string name = "";
         public int HP
         {
             get{return hp;}
@@ -47,12 +49,12 @@ namespace Textbaserad_Spel
             }
             else
             {
-                
                 target.HP -= damage;
                 stamina -= exhaustion;
                 turn -= 1;
                 points += 10;
                 Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
+                Thread.Sleep(1000);
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
             }
@@ -73,8 +75,9 @@ namespace Textbaserad_Spel
                 target.HP -= 30;
                 stamina -= exhaustion - 20;
                 turn -= 2;
-                points -= 20;
+                points += 20;
                 Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
+                Thread.Sleep(1000);
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
             }
@@ -82,18 +85,60 @@ namespace Textbaserad_Spel
 
         public void Vila()
         {
-            turn -= 1;
             stamina += 30;
+            hp += 20;
             Console.WriteLine("Du vilar lite.");
-            Console.WriteLine("Stamina +" + regain + ".");
+            Thread.Sleep(1000);
+            Console.WriteLine("Stamina +" + staminaRegain + ".");
+            Thread.Sleep(1000);
+            Console.WriteLine("HP +" + hpRegain + ".");
+
+
             Console.WriteLine("");
         }
 
         public void SkrivaUt()
         {
             Console.WriteLine("Din hp: " + hp + "."); 
+            Thread.Sleep(1000);
             Console.WriteLine("Din stamina: " + stamina + ".");
             Console.WriteLine("");
+        }
+        public void Spara()
+        {
+            Console.WriteLine("Skriv ner din namn: ");
+            name = Console.ReadLine();
+            StreamWriter sr = new StreamWriter("Textfil.txt", true);
+            sr.Write(name + ": " + points);
+            sr.Close();
+        }
+
+        public int Förtsätta(int i)
+        {
+            hp += 100;
+            Console.WriteLine("Du vann!");
+            Console.WriteLine("HP +100");
+            Console.WriteLine("Vill du förtsätta? Y/N");
+            string förtsätta = Console.ReadLine();
+            if(förtsätta == "Y")
+            {
+                Console.WriteLine("Round 2");
+                i++;
+                Turn = 2;
+            }
+            else
+            {
+                Spara();
+                i = 0;
+            }
+            return i;
+        }
+        public int Förlora(int i)
+        {
+            Console.WriteLine("Du förlorade");
+            Spara();
+            i = 0;
+            return i;
         }
     }
 }
