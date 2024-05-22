@@ -54,7 +54,6 @@ namespace Textbaserad_Spel
                 turn -= 1;
                 points += 10;
                 Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
-                Thread.Sleep(1000);
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
             }
@@ -77,7 +76,6 @@ namespace Textbaserad_Spel
                 turn -= 2;
                 points += 20;
                 Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
-                Thread.Sleep(1000);
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
             }
@@ -88,9 +86,7 @@ namespace Textbaserad_Spel
             stamina += 30;
             hp += 20;
             Console.WriteLine("Du vilar lite.");
-            Thread.Sleep(1000);
             Console.WriteLine("Stamina +" + staminaRegain + ".");
-            Thread.Sleep(1000);
             Console.WriteLine("HP +" + hpRegain + ".");
 
 
@@ -100,16 +96,13 @@ namespace Textbaserad_Spel
         public void SkrivaUt()
         {
             Console.WriteLine("Din hp: " + hp + "."); 
-            Thread.Sleep(1000);
             Console.WriteLine("Din stamina: " + stamina + ".");
             Console.WriteLine("");
         }
         public void Spara()
         {
-            Console.WriteLine("Skriv ner din namn: ");
-            name = Console.ReadLine();
             StreamWriter sr = new StreamWriter("Textfil.txt", true);
-            sr.Write(name + ": " + points);
+            sr.WriteLine(points);
             sr.Close();
         }
 
@@ -120,7 +113,7 @@ namespace Textbaserad_Spel
             Console.WriteLine("HP +100");
             Console.WriteLine("Vill du förtsätta? Y/N");
             string förtsätta = Console.ReadLine();
-            if(förtsätta == "Y")
+            if(förtsätta == "y")
             {
                 Console.WriteLine("Round 2");
                 i++;

@@ -13,7 +13,6 @@ namespace Textbaserad_Spel
             {
                 rage += 30;
                 Console.WriteLine("Fiende vilar lite");
-                Thread.Sleep(1000);
                 Console.WriteLine("Rage +" + rage + ".");
             }
             else
@@ -21,7 +20,6 @@ namespace Textbaserad_Spel
                 spelare.HP -= damage;
                 rage = rage - exhaustion;
                 Console.WriteLine("Du fick " + damage + " skada.");
-                Thread.Sleep(1000);
                 Console.WriteLine("fiende rage -" + exhaustion + ".");
                 Console.WriteLine("");
             }
@@ -31,7 +29,6 @@ namespace Textbaserad_Spel
             if(showUp)
             {
                 Console.WriteLine("En stark fiende dyker up!");
-                Thread.Sleep(1000);
                 Console.WriteLine(" ");
                 showUp = false;
             }
