@@ -8,11 +8,10 @@ namespace Textbaserad_Spel
         protected int damage;
         protected int exhaustion;
         bool showUp = true;
-        public Fiende(int hp, int rage, int damage, int exhaustion)
+        public Fiende(int hp, int rage, int exhaustion)
         {
             this.hp = hp;
             this.rage = rage;
-            this.damage = damage;
             this.exhaustion = exhaustion;
         }
         public int HP
@@ -37,7 +36,7 @@ namespace Textbaserad_Spel
         }
         public virtual void Attack(Spelare spelare)
         {
-            damage = damageCrit.Next(5, 16);
+            damage = damageCrit.Next(10, 21);
             if(rage < 10)
             {
                 rage += 10;

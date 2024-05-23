@@ -4,12 +4,12 @@ namespace Textbaserad_Spel
     {
         Random damageCrit = new Random();
         bool showUp = true;
-        public StarkFiende(int hp, int rage, int damage, int exhaustion) : base(hp, rage, damage, exhaustion)
+        public StarkFiende(int hp, int rage, int exhaustion) : base(hp, rage, exhaustion)
         {
         }
         public override void Attack(Spelare spelare)
         {
-            damage = damageCrit.Next(10, 26);
+            damage = damageCrit.Next(15, 26);
             if(rage < 30)
             {
                 rage += 30;

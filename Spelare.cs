@@ -3,15 +3,17 @@ namespace Textbaserad_Spel
     public class Spelare
     {
         private int hp = 100;
+        Random staminaGain = new Random();
         private int stamina = 100;
+        private int staminaRegain;
         Random damageCrit = new Random();
         private int damage;
         private int exhaustion = 20;
-        private int staminaRegain = 20;
         Random hpGain = new Random();
         private int hpRegain;
         private int turn = 2;
         private int points = 0;
+        Random chest = new Random();
         public int HP
         {
             get{return hp;}
@@ -61,7 +63,6 @@ namespace Textbaserad_Spel
                 Console.WriteLine("");
             }
         }
-
         public void StarkAttack(Fiende target)
         {
             damage = damageCrit.Next(5, 16);
@@ -86,19 +87,49 @@ namespace Textbaserad_Spel
                 Console.WriteLine("");
             }
         }
-
         public void Vila()
         {
-            hpRegain = hpGain.Next(1, 16);
-            stamina += 30;
-            hp += hpRegain;
+            staminaRegain = staminaGain.Next(15, 31);
+            stamina += staminaRegain;
             turn -= 1;
+            points += 10;
             Console.WriteLine("Du vilar lite.");
             Console.WriteLine("Stamina +" + staminaRegain + ".");
+            Console.WriteLine("");
+        }
+        public void HealUp()
+        {
+            hpRegain = hpGain.Next(10, 16);
+            hp += hpRegain;
+            turn -= 1;
+            points += 10;
+            Console.WriteLine("Du äter en äpple");
             Console.WriteLine("HP +" + hpRegain + ".");
             Console.WriteLine("");
         }
-
+        public void Chest()
+        {
+            int chestChance = chest.Next(1, 3);
+            Console.WriteLine("Du hitade en låda och det står graits 200 points bredvid den.");
+            Console.WriteLine("*Hög risk*");
+            Console.WriteLine("Vill du öppna den? Y/N");
+            string chestSvar = Console.ReadLine();
+            if(chestSvar.ToLower() == "y" && chestChance == 1)
+            {
+                hp -= 50;
+                Console.WriteLine("Det fanns en bomb i lådan!");
+                Console.WriteLine("Hp -50");
+            }
+            else if(chestSvar.ToLower() == "y" && chestChance == 2)
+            {
+                points += 200;
+                Console.WriteLine("Du fick 200 points!");
+            }
+            else if (chestSvar.ToLower() == "n")
+            {
+                Console.WriteLine("");
+            }
+        }
         public void SkrivaUt()
         {
             Console.WriteLine("Din hp: " + hp + "."); 
@@ -111,7 +142,6 @@ namespace Textbaserad_Spel
             sr.WriteLine(points);
             sr.Close();
         }
-
         public void Förtsätta()
         {
             hp += hpRegain;
