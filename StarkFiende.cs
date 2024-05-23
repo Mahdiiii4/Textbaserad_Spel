@@ -2,17 +2,18 @@ namespace Textbaserad_Spel
 {
     public class StarkFiende : Fiende
     {
+        Random damageCrit = new Random();
         bool showUp = true;
         public StarkFiende(int hp, int rage, int damage, int exhaustion) : base(hp, rage, damage, exhaustion)
         {
         }
-        int turn = 2;
         public override void Attack(Spelare spelare)
         {
+            damage = damageCrit.Next(10, 26);
             if(rage < 30)
             {
                 rage += 30;
-                Console.WriteLine("Fiende vilar lite");
+                Console.WriteLine("Stark fiende vilar lite");
                 Console.WriteLine("Rage +" + rage + ".");
             }
             else
@@ -20,7 +21,7 @@ namespace Textbaserad_Spel
                 spelare.HP -= damage;
                 rage = rage - exhaustion;
                 Console.WriteLine("Du fick " + damage + " skada.");
-                Console.WriteLine("fiende rage -" + exhaustion + ".");
+                Console.WriteLine("Stark fiende rage -" + exhaustion + ".");
                 Console.WriteLine("");
             }
         }
@@ -28,7 +29,7 @@ namespace Textbaserad_Spel
         {
             if(showUp)
             {
-                Console.WriteLine("En stark fiende dyker up!");
+                Console.WriteLine("En stark fiende dyker upp!");
                 Console.WriteLine(" ");
                 showUp = false;
             }

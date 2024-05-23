@@ -4,6 +4,7 @@ namespace Textbaserad_Spel
     {
         protected int hp;
         protected int rage;
+        Random damageCrit = new Random();
         protected int damage;
         protected int exhaustion;
         bool showUp = true;
@@ -36,11 +37,13 @@ namespace Textbaserad_Spel
         }
         public virtual void Attack(Spelare spelare)
         {
+            damage = damageCrit.Next(5, 16);
             if(rage < 10)
             {
                 rage += 10;
                 Console.WriteLine("Fiende vilar lite");
                 Console.WriteLine("Rage +" + rage + ".");
+                Console.WriteLine("");
             }
             else
             { 
@@ -49,15 +52,15 @@ namespace Textbaserad_Spel
                 rage -= exhaustion;
                 Console.WriteLine("Du fick " + damage + " skada.");
                 Console.WriteLine("fiende rage -" + exhaustion + ".");
-                Console.WriteLine(""); 
+                Console.WriteLine("");
             }
         }
         public virtual void ShowUpText()
         {
             if(showUp)
             {
-                Console.WriteLine("En fiende dyker up!");
-                Console.WriteLine(" ");
+                Console.WriteLine("En fiende dyker upp!");
+                Console.WriteLine("");
                 showUp = false;
             }
         }

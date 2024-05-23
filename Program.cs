@@ -9,11 +9,12 @@ fiender.Add(new StarkFiende(150, 90, 10, 30));
 
 bool quit = false;
 bool play = false;
-bool save = false;
-int i = 0;
+
+Random fiendeVal = new Random();
 
 while(!quit) 
 {
+    int i = fiendeVal.Next(0, 2);
     switch(meny.MainMeny())
     {
         case 1:
@@ -40,7 +41,7 @@ while(!quit)
     
     while(play)
     {
-        Console.WriteLine("Turns" + spelare.Turn);
+        Console.WriteLine("Du har " + spelare.Turn + " turns kvar.");
         fiender[i].ShowUpText();
         switch(meny.SpelMeny()) 
         {
@@ -74,25 +75,19 @@ while(!quit)
 
         if(fiender[i].HP <= 0)
         {
-            i = spelare.Förtsätta(i);
+            spelare.Förtsätta();
             play = false;
-            save = true;
         }
         else if(spelare.HP <= 0)
         {
-            i = spelare.Förlora(i);
+            spelare.Förlora();
             play = false;
-            save = true;
         }
         else if(spelare.Turn < 1)
         {
+            Console.WriteLine(fiender[i] + " attackerar.");
             fiender[i].Attack(spelare);
             spelare.Turn = 2;
         }
-    }
-    if(save)
-    {
-        save = false;
-        meny.ScoreBoard(spelare.Points);
     }
 }

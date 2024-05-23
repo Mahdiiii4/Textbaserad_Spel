@@ -4,13 +4,14 @@ namespace Textbaserad_Spel
     {
         private int hp = 100;
         private int stamina = 100;
-        private int damage = 10;
+        Random damageCrit = new Random();
+        private int damage;
         private int exhaustion = 20;
-        private int staminaRegain = 30;
-        private int hpRegain = 30;
+        private int staminaRegain = 20;
+        Random hpGain = new Random();
+        private int hpRegain;
         private int turn = 2;
         private int points = 0;
-        private string name = "";
         public int HP
         {
             get{return hp;}
@@ -43,9 +44,11 @@ namespace Textbaserad_Spel
         }
         public void Attack(Fiende target)
         {
+            damage = damageCrit.Next(1, 11);
             if(stamina < 20)
             {
                 Console.WriteLine("Du har inte tillräckligt stamina!");
+                Console.WriteLine("");
             }
             else
             {
@@ -61,21 +64,24 @@ namespace Textbaserad_Spel
 
         public void StarkAttack(Fiende target)
         {
+            damage = damageCrit.Next(5, 16);
             if(stamina < 40)
             {
                 Console.WriteLine("Du har inte tillräckligt stamina!");
+                Console.WriteLine("");
             }
             else if(turn < 2)
             {
                 Console.WriteLine("Du har inte tillräckligt turns!");
+                Console.WriteLine("");
             }
             else
             {
-                target.HP -= 30;
-                stamina -= exhaustion - 20;
+                target.HP -= damage;
+                stamina -= exhaustion + 30;
                 turn -= 2;
                 points += 20;
-                Console.WriteLine("Du attackerade en fiende. Fiende hp: "+ target.HP +".");
+                Console.WriteLine("Du använde en stark attack mot en fiende. Fiende hp: "+ target.HP +".");
                 Console.WriteLine("Stamina -" + exhaustion + ".");
                 Console.WriteLine("");
             }
@@ -83,13 +89,13 @@ namespace Textbaserad_Spel
 
         public void Vila()
         {
+            hpRegain = hpGain.Next(1, 16);
             stamina += 30;
-            hp += 20;
+            hp += hpRegain;
+            turn -= 1;
             Console.WriteLine("Du vilar lite.");
             Console.WriteLine("Stamina +" + staminaRegain + ".");
             Console.WriteLine("HP +" + hpRegain + ".");
-
-
             Console.WriteLine("");
         }
 
@@ -106,32 +112,30 @@ namespace Textbaserad_Spel
             sr.Close();
         }
 
-        public int Förtsätta(int i)
+        public void Förtsätta()
         {
-            hp += 100;
+            hp += hpRegain;
             Console.WriteLine("Du vann!");
-            Console.WriteLine("HP +100");
+            Console.WriteLine("HP +" + hpRegain + ".");
             Console.WriteLine("Vill du förtsätta? Y/N");
             string förtsätta = Console.ReadLine();
-            if(förtsätta == "y")
+            Console.WriteLine("");
+
+            if(förtsätta.ToLower() == "y")
             {
                 Console.WriteLine("Round 2");
-                i++;
+                Console.WriteLine("");
                 Turn = 2;
             }
             else
             {
-                //Spara();
-                i = 0;
+                Spara();
             }
-            return i;
         }
-        public int Förlora(int i)
+        public void Förlora()
         {
+            Spara();
             Console.WriteLine("Du förlorade");
-            //Spara();
-            i = 0;
-            return i;
         }
     }
 }

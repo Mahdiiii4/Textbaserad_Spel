@@ -84,6 +84,7 @@ namespace Textbaserad_Spel
             Console.WriteLine("Du kommer möta en fiende eller en stark fiende. Du har två turns varje runda för att välje bland olika val.");
             Console.WriteLine("Allt kostar en turn utanför stark attack som kostar två turns. Scoreboard och instruktioner kostar inget.");
             Console.WriteLine("Värje runda får du tillbaka 2 turns.");
+            Console.WriteLine("Lycka till!!!");
             Console.WriteLine("");
         }
 
